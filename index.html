@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Jack Ellinsworth CV</title>
+  <meta name="description" content="Jack Ellinsworth, public cloud engineer and degree apprentice at Barclays UK. Experience, education, skills, projects and contact details.">
+  <meta name="color-scheme" content="light dark">
+
+  <!-- Link previews -->
+  <meta property="og:type" content="profile">
+  <meta property="og:title" content="Jack Ellinsworth, Cloud Engineer">
+  <meta property="og:description" content="Public cloud engineer and degree apprentice at Barclays UK, working with AWS and Azure.">
+  <meta property="og:url" content="https://jackellinsworth.github.io/">
+  <link rel="canonical" href="https://jackellinsworth.github.io/">
+
+  <!-- Inline favicon -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%230a0f15'/%3E%3Crect x='5' y='3' width='6' height='10' fill='%2358d3cf'/%3E%3C/svg%3E">
+
+  <!-- Runs before the CSS to avoid a theme flash -->
+  <script>
+    try {
+      var savedTheme = localStorage.getItem('cv-theme');
+      if (savedTheme === 'dark' || savedTheme === 'light') {
+        document.documentElement.setAttribute('data-theme', savedTheme);
+      }
+    } catch (err) {}
+  </script>
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="#top">J. Ellinsworth</a>
+    <nav class="nav-links" aria-label="Sections">
+      <a href="#profile">Profile</a>
+      <a href="#experience">Experience</a>
+      <a href="#education">Education</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <!-- Shown by main.js -->
+    <div class="theme" id="theme" role="group" aria-label="Colour theme" hidden>
+      <button type="button" id="theme-dark" data-theme-set="dark" aria-pressed="false">Dark</button>
+      <button type="button" id="theme-light" data-theme-set="light" aria-pressed="false">Light</button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ===== Intro ===== -->
+  <section class="hero" id="top" aria-labelledby="name">
+    <div class="wrap">
+      <p class="eyebrow label"><span>Curriculum vitae</span><span>Updated October 2026</span></p>
+      <h1 id="name">Jack Ellinsworth<span class="cursor" aria-hidden="true"></span></h1>
+      <div class="hero-cols">
+        <div class="hero-lead">
+          <p class="lead">Public cloud engineer at Barclays, working with AWS and Azure while earning a BSc through a degree apprenticeship. Writing code since the age of 13.</p>
+          <p class="actions">
+            <a class="btn primary" href="#contact">Get in touch</a>
+            <a class="btn" href="https://www.linkedin.com/in/jack-ellinsworth-8146242b0" rel="noopener">LinkedIn</a>
+            <a class="btn" href="https://github.com/JackEllinsworth" rel="noopener">GitHub</a>
+          </p>
+        </div>
+        <!-- Span hides the dot leaders -->
+        <dl class="rows">
+          <div><dt><span>Role</span></dt><dd>Public Cloud Engineer</dd></div>
+          <div><dt><span>Employer</span></dt><dd>Barclays UK</dd></div>
+          <div><dt><span>Platforms</span></dt><dd>AWS, Azure</dd></div>
+          <div><dt><span>Certifications</span></dt><dd>Three, across AWS and Azure</dd></div>
+          <div><dt><span>Degree</span></dt><dd>BSc Digital and Technology Solutions</dd></div>
+          <div><dt><span>Results so far</span></dt><dd>First in Years 1 and 2</dd></div>
+          <div><dt><span>Coding since</span></dt><dd>Age 13</dd></div>
+          <div><dt><span>Based in</span></dt><dd>Lancashire, UK</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Profile ===== -->
+  <section class="sec" id="profile" aria-labelledby="h-profile">
+    <div class="wrap sec-in">
+      <div class="sec-label"><h2 class="rev" id="h-profile">Profile</h2></div>
+      <div class="sec-body prose">
+        <p>I'm a cloud engineer in the Public Cloud Engineering team at Barclays, based at the Radbroke campus in Knutsford. I joined in August 2024 as a degree apprentice and I'm now halfway through a BSc in Digital and Technology Solutions at Manchester Metropolitan University, with a First in both years so far.</p>
+        <p>At work I've led the architecture and rebuild of a multi-region application on AWS, helped build an internal web application from scratch and written the client package it depends on. Moving between infrastructure design, full-stack development and study has been a steep learning curve, and each has reinforced the others.</p>
+        <p>I started coding at 13 and have taken paid commissions since, building Discord bots, APIs and game systems. I hold three cloud certifications across AWS and Azure and I'm working towards AWS Solutions Architect Associate.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Experience (newest first) ===== -->
+  <section class="sec" id="experience" aria-labelledby="h-experience">
+    <div class="wrap sec-in">
+      <div class="sec-label"><h2 class="rev" id="h-experience">Experience</h2></div>
+      <div class="sec-body stack">
+
+        <article class="entry">
+          <h3>Cloud Engineer Degree Apprentice <span class="tag">Current</span></h3>
+          <p class="meta"><span class="org">Barclays UK</span> · Aug 2024 to present · Knutsford, England</p>
+          <p class="note">Public Cloud Engineering team, based at Radbroke, working across AWS and Azure.</p>
+          <ul class="points">
+            <li>Led the architecture and rebuild of a multi-region application supporting critical customer infrastructure.</li>
+            <li>Implemented automatic, manual and geolocation failover, monitoring, and the DNS and network design with AWS Route 53.</li>
+            <li>Delivered it with zero-downtime, multi-region deployments using AWS CodeDeploy and CloudFormation, with automatic rollbacks through GitLab CI/CD pipelines.</li>
+            <li>Coordinated release strategies to roll changes out safely across environments.</li>
+            <li>Built an internal web application from the ground up with the team, using Python on the backend and Alpine.js and HTMX on the frontend.</li>
+            <li>Independently designed and built the internal client package that application depends on for its backend integrations.</li>
+            <li>Completed Years 1 and 2 of the degree alongside the role with a First in both, and earned three cloud certifications.</li>
+          </ul>
+        </article>
+
+        <article class="entry">
+          <h3>Volunteer programmer</h3>
+          <p class="meta"><span class="org">Online social server</span> · Apr 2021 to 2023</p>
+          <ul class="points">
+            <li>Programmed for an online social server, designing its algorithms and its data storage on MongoDB and MySQL.</li>
+            <li>Worked in a team of about five creating simulation games, taking on the most difficult programming tasks myself.</li>
+            <li>Ran the supporting software on a Linux VPS and managed the code in GitHub repositories.</li>
+          </ul>
+        </article>
+
+        <article class="entry">
+          <h3>Crew Member</h3>
+          <p class="meta"><span class="org">McDonald's</span> · Sep 2022 to Aug 2024</p>
+          <ul class="points">
+            <li>Worked busy weekend shifts alongside my A-levels, keeping the drive-thru moving and taking orders on EPOS systems.</li>
+            <li>Supervised and supported other crew members, and was trusted by managers to be reliable and on time.</li>
+          </ul>
+        </article>
+
+        <article class="entry">
+          <h3>Work experience placements</h3>
+          <p class="meta"><span class="org">GCHQ and Fujitsu</span> · Apr 2023</p>
+          <ul class="points">
+            <li>GCHQ: STEM and analysis work in a team of new people, breaking a problem down, splitting the workload into pairs and combining our analysis into a conclusion. It taught me the importance of confidentiality on sensitive work.</li>
+            <li>Fujitsu: completed modules in cyber security, quantum computing and the Internet of Things, including how software vulnerabilities allow unauthorised access to systems.</li>
+          </ul>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Education ===== -->
+  <section class="sec" id="education" aria-labelledby="h-education">
+    <div class="wrap sec-in">
+      <div class="sec-label"><h2 class="rev" id="h-education">Education</h2></div>
+      <div class="sec-body">
+        <div class="stack">
+
+          <article class="entry">
+            <h3>BSc Digital and Technology Solutions <span class="tag">In progress</span></h3>
+            <p class="meta"><span class="org">Manchester Metropolitan University</span> · Sep 2024 to Sep 2028 · Degree apprenticeship with Barclays</p>
+            <p class="note">First in both Years 1 and 2. Study so far covers Java, APIs, operating systems, software architecture and design, and SQL database management, including advanced queries and migration strategies.</p>
+          </article>
+
+          <article class="entry">
+            <h3>A-levels</h3>
+            <p class="meta"><span class="org">Blackpool Sixth Form College</span> · Sep 2022 to Jun 2024</p>
+            <dl class="rows grades">
+              <div><dt><span>Maths</span></dt><dd>A*</dd></div>
+              <div><dt><span>Computer Science</span></dt><dd>A*</dd></div>
+              <div><dt><span>Physics</span></dt><dd>B</dd></div>
+            </dl>
+            <p class="note">Won the college's A Level Computer Science Student Award 2024 for exceptional coursework.</p>
+          </article>
+
+          <article class="entry">
+            <h3>GCSEs</h3>
+            <p class="meta"><span class="org">Cardinal Allen Catholic High School</span> · 2017 to 2022 · Nine GCSEs, all at grades 7 to 9</p>
+            <!-- Grouped by grade -->
+            <dl class="rows bands">
+              <div><dt><span>Grade 9</span></dt><dd>Computer Science, Religious Education</dd></div>
+              <div><dt><span>Grade 8</span></dt><dd>Mathematics, English Literature, Biology, Chemistry, Product Design</dd></div>
+              <div><dt><span>Grade 7</span></dt><dd>English Language, Physics</dd></div>
+            </dl>
+          </article>
+
+        </div>
+
+        <div class="sub">
+          <h3 class="label">Certifications</h3>
+          <ul class="points">
+            <li>AWS Certified Cloud Practitioner</li>
+            <li>Microsoft Azure Fundamentals</li>
+            <li>Microsoft Azure AI Fundamentals</li>
+            <li>Working towards AWS Certified Solutions Architect, Associate</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Skills ===== -->
+  <section class="sec" id="skills" aria-labelledby="h-skills">
+    <div class="wrap sec-in">
+      <div class="sec-label"><h2 class="rev" id="h-skills">Skills</h2></div>
+      <div class="sec-body">
+        <dl class="rows zebra skills">
+          <div><dt><span>Cloud platforms</span></dt><dd>AWS, Azure, Google Cloud Platform</dd></div>
+          <div><dt><span>AWS services</span></dt><dd>EC2, Route 53, CloudFormation, CodeDeploy</dd></div>
+          <div><dt><span>Resilience</span></dt><dd>Multi-region architecture, automatic and manual failover, zero-downtime deployments, automatic rollbacks, monitoring, release strategy</dd></div>
+          <div><dt><span>Networking</span></dt><dd>Network design, DNS, geolocation failover, SSL certificates and domains</dd></div>
+          <div><dt><span>Languages</span></dt><dd>Python, Java, JavaScript (Node.js), SQL, Lua, Visual Basic .NET</dd></div>
+          <div><dt><span>Development</span></dt><dd>APIs with Express, Alpine.js, HTMX, client library design, game engine scripting, software architecture and design</dd></div>
+          <div><dt><span>Databases</span></dt><dd>SQL database management, advanced queries, migration strategies, MySQL, MongoDB</dd></div>
+          <div><dt><span>Pipelines</span></dt><dd>GitLab CI/CD pipelines</dd></div>
+          <div><dt><span>Systems</span></dt><dd>Linux and the UNIX command line, VPS servers, operating systems</dd></div>
+          <div><dt><span>Tools</span></dt><dd>Git, GitHub and the GitHub CLI, VS Code, Visual Studio, PyCharm</dd></div>
+          <div><dt><span>Ways of working</span></dt><dd>Collaborative development, change management, business relationship management</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Projects ===== -->
+  <section class="sec" id="projects" aria-labelledby="h-projects">
+    <div class="wrap sec-in">
+      <div class="sec-label"><h2 class="rev" id="h-projects">Projects</h2></div>
+      <div class="sec-body stack">
+
+        <p>I've been building things in my own time since I was 13. My work projects are under Experience.</p>
+
+        <article class="entry">
+          <h3>Commissioned Discord bot with music playback</h3>
+          <p class="meta"><span class="org">Paid commission</span> · Node.js</p>
+          <p class="note">Took a client's brief through to a finished bot and delivered it as paid work. Written in Node.js, with music playback alongside its other features.</p>
+        </article>
+
+        <article class="entry">
+          <h3>Commissioned game systems</h3>
+          <p class="meta"><span class="org">Paid commissions</span> · Game engine scripting</p>
+          <p class="note">Built and sold in-game technology to other developers, working in a game engine. Most of it was airport infrastructure, including an automatic user queue system built around recursion.</p>
+        </article>
+
+        <article class="entry">
+          <h3>Express APIs for user data</h3>
+          <p class="meta"><span class="org">Personal and group projects</span> · Node.js, Express, MongoDB, MySQL</p>
+          <p class="note">APIs built with Express to manage user data on top of a database, for my own projects and for group work. Hosted on a VPS that I set up from the UNIX command line, with secured server ports, SSL certificates and a domain name.</p>
+        </article>
+
+        <article class="entry">
+          <h3>Discord bots for moderation and games</h3>
+          <p class="meta"><span class="org">Personal projects</span></p>
+          <p class="note">Bots that handle server moderation and run games. I kept these in GitHub repositories, which is where I learned version control properly, including reverting commits and using the GitHub CLI.</p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Contact ===== -->
+  <section class="sec" id="contact" aria-labelledby="h-contact">
+    <div class="wrap sec-in">
+      <div class="sec-label"><h2 class="rev" id="h-contact">Contact</h2></div>
+      <div class="sec-body prose">
+        <p>The quickest way to reach me is LinkedIn or email.</p>
+        <dl class="rows contact">
+          <div><dt><span>LinkedIn</span></dt><dd><a href="https://www.linkedin.com/in/jack-ellinsworth-8146242b0" id="c-linkedin" rel="noopener">linkedin.com/in/jack-ellinsworth-8146242b0</a></dd></div>
+          <!-- data-copy = id of the text to copy -->
+          <div><dt><span>Email</span></dt><dd><a href="mailto:jackellinsworth@gmail.com" id="c-email">jackellinsworth@gmail.com</a><button type="button" class="btn small" id="copy-email" data-copy="c-email">Copy</button></dd></div>
+          <div><dt><span>GitHub</span></dt><dd><a href="https://github.com/JackEllinsworth" id="c-github" rel="noopener">github.com/JackEllinsworth</a></dd></div>
+          <div><dt><span>Location</span></dt><dd>Thornton-Cleveleys, Lancashire</dd></div>
+        </dl>
+        <p class="sr" id="live" role="status" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <p>© 2026 Jack Ellinsworth. Set in 3270, an open-source typeface drawn from the display of IBM's 3270 terminals.</p>
+    <p><a href="#top">Back to top</a></p>
+  </div>
+</footer>
+
+<!-- Decorative status line -->
+<div class="status" aria-hidden="true">
+  <div class="wrap status-in">
+    <span class="status-id">4B</span>
+    <span class="status-path">Jack.Ellinsworth.CV</span>
+    <span class="status-sec" id="status-sec">Top</span>
+    <span class="status-pos" id="status-pos">00/06</span>
+  </div>
+</div>
+
+<!-- Structured data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Jack Ellinsworth",
+  "jobTitle": "Cloud Engineer",
+  "email": "mailto:jackellinsworth@gmail.com",
+  "sameAs": ["https://www.linkedin.com/in/jack-ellinsworth-8146242b0", "https://github.com/JackEllinsworth"],
+  "worksFor": { "@type": "Organization", "name": "Barclays UK" },
+  "alumniOf": [
+    { "@type": "CollegeOrUniversity", "name": "Manchester Metropolitan University" },
+    { "@type": "EducationalOrganization", "name": "Blackpool Sixth Form College" }
+  ]
+}
+</script>
+
+<script src="js/main.js"></script>
+</body>
+</html>
