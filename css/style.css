@@ -1,6 +1,16 @@
-/* CV styles. 3270 terminal look: light = printout, dark = screen */
+/*
+  CV site styles.
 
-/* Subset of 3270 (~10kb). Licence in /fonts */
+  The whole thing is set in the 3270 font, so I leaned into the mainframe look:
+  dot-leader rows like an old panel screen, reverse-video headings and a status
+  line pinned to the bottom. Light mode is meant to feel like the printout,
+  dark mode like the screen.
+
+  Order of this file: font, colours, base, shared bits, then each section top
+  to bottom, then print.
+*/
+
+/* subset of 3270 (latin + box drawing) so it's only ~10kb. licence is in /fonts */
 @font-face {
   font-family: "IBM 3270";
   font-style: normal;
@@ -9,9 +19,9 @@
   src: url("../fonts/3270-Regular.woff2") format("woff2");
 }
 
-/* ---------- Colours + sizes ---------- */
+/* ---------- colours + sizes ---------- */
 
-/* Light theme (default) */
+/* light theme is the default. every colour on the page comes from these */
 :root {
   --bg: #f2f5ef;
   --surface: #e3ecdf;
@@ -36,7 +46,9 @@
   color-scheme: light;
 }
 
-/* Dark theme. Listed twice: system dark, and dark picked with the toggle */
+/* dark theme. the same values are listed twice on purpose:
+   1) system is dark and the visitor hasn't picked light with the toggle
+   2) the visitor picked dark with the toggle, whatever the system says */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --bg: #0a0f15;
@@ -65,12 +77,12 @@
 }
 :root[data-theme="light"] { color-scheme: light; }
 
-/* ---------- Base ---------- */
+/* ---------- base ---------- */
 
 *, *::before, *::after { box-sizing: border-box; }
 [hidden] { display: none !important; }
 
-/* Stops the sticky nav covering headings */
+/* scroll-padding stops the sticky nav covering a heading when you jump to it */
 html { scroll-padding-top: calc(var(--nav-h) + 1.25rem); -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
 
@@ -81,9 +93,9 @@ body {
   font-family: var(--font);
   font-size: var(--t-base);
   font-weight: 400;
-  font-synthesis: none; /* No fake bold */
+  font-synthesis: none; /* 3270 only comes in regular, don't let the browser fake a bold */
   line-height: 1.55;
-  /* Room for the status line */
+  /* leave room for the fixed status line at the bottom */
   padding-bottom: calc(var(--status-h) + env(safe-area-inset-bottom, 0px));
 }
 
@@ -98,21 +110,22 @@ a:hover { background: var(--accent); color: var(--on-accent); text-decoration: n
 
 .wrap { max-width: 68rem; margin: 0 auto; padding-inline: var(--gutter); }
 
-/* Skip link, shows on focus */
+/* skip link for keyboard users, only shows when focused */
 .skip {
   position: absolute; left: var(--gutter); top: -4rem; z-index: 30;
   background: var(--accent); color: var(--on-accent); padding: 0.35rem 1ch; text-decoration: none;
 }
 .skip:focus { top: calc(env(safe-area-inset-top, 0px) + 0.5rem); }
 
-/* Screen reader only */
+/* screen reader only */
 .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; }
 
-/* ---------- Shared ---------- */
+/* ---------- shared bits ---------- */
 
 .label { font-size: var(--t-xs); text-transform: uppercase; letter-spacing: 0.09em; color: var(--dim); }
 
-/* Reverse video headings */
+/* reverse video block, used for the section headings.
+   no bold in this font so hierarchy is done with colour and size instead */
 .rev {
   display: inline-block; background: var(--accent); color: var(--on-accent);
   padding: 0 1ch; font-size: var(--t-xs); line-height: 1.7; text-transform: uppercase; letter-spacing: 0.09em;
@@ -132,8 +145,15 @@ a:hover { background: var(--accent); color: var(--on-accent); text-decoration: n
 .btn.primary:hover { background: var(--ink); border-color: var(--ink); color: var(--bg); }
 .btn.small { font-size: var(--t-xs); padding: 0 1ch; line-height: 1.6; text-transform: uppercase; letter-spacing: 0.06em; }
 
-/* "Label . . . : value" rows. Label background hides the dots behind it.
-   --label must be an ODD number of ch or the last dot gets cut off */
+/*
+  "Label . . . . : value" rows.
+
+  The dots are one long string sat behind the label, and the label has a solid
+  background so it covers the dots underneath it. That way the dots line up
+  down the column no matter how long each label is.
+
+  --label needs to be an ODD number of ch, otherwise the last dot gets cut off.
+*/
 .rows { --label: 17ch; display: flex; flex-direction: column; gap: 0.2rem; }
 .rows > div { display: flex; align-items: baseline; gap: 1ch; min-width: 0; }
 .rows dt {
@@ -145,17 +165,17 @@ a:hover { background: var(--accent); color: var(--on-accent); text-decoration: n
   position: absolute; left: 0; top: 0; color: var(--leader);
 }
 .rows dt span { position: relative; background: var(--row-bg, var(--bg)); padding-right: 1ch; }
-/* Hanging indent for wrapped values */
+/* hanging indent so a value that wraps lines up under itself, not under the colon */
 .rows dd { flex: 1 1 0; min-width: 0; overflow-wrap: anywhere; padding-left: 2ch; text-indent: -2ch; }
 .rows dd > * { text-indent: 0; }
 .rows dd::before { content: ": "; color: var(--leader); }
 
-/* Striped rows (greenbar paper) */
+/* striped version for the skills table (greenbar paper, basically) */
 .rows.zebra { gap: 0; }
 .rows.zebra > div { padding: 0.3rem 1ch; }
 .rows.zebra > div:nth-child(odd) { --row-bg: var(--surface); background: var(--surface); }
 
-/* ---------- Nav ---------- */
+/* ---------- top nav ---------- */
 
 .nav {
   position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20;
@@ -167,7 +187,7 @@ a:hover { background: var(--accent); color: var(--on-accent); text-decoration: n
 .nav-links::-webkit-scrollbar { display: none; }
 .nav-links a { color: var(--dim); text-decoration: none; font-size: var(--t-sm); padding: 0.2rem 1ch; }
 .nav-links a:hover { background: var(--surface); color: var(--ink); }
-.nav-links a[aria-current="true"] { background: var(--accent); color: var(--on-accent); } /* Set in main.js */
+.nav-links a[aria-current="true"] { background: var(--accent); color: var(--on-accent); } /* set from main.js */
 
 .theme { display: flex; flex: 0 0 auto; margin-left: auto; border: 1px solid var(--line); }
 .theme button {
@@ -177,24 +197,24 @@ a:hover { background: var(--accent); color: var(--on-accent); text-decoration: n
 .theme button:hover { color: var(--ink); }
 .theme button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
 
-/* Mobile: links on their own scrolling row */
+/* on phones the links drop to their own row and scroll sideways */
 @media (max-width: 780px) {
   :root { --nav-h: 5rem; }
   .nav-in { padding-block: 0.45rem; row-gap: 0.3rem; }
   .nav-links { order: 3; flex-basis: 100%; margin-inline: -1ch; }
 }
 
-/* ---------- Intro ---------- */
+/* ---------- intro ---------- */
 
 .hero { padding-block: clamp(2.25rem, 6vw, 4.5rem) clamp(2.5rem, 6vw, 4.5rem); }
 .eyebrow { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0 2ch; }
 .hero h1 {
   font-size: var(--t-hero); line-height: 0.98;
-  letter-spacing: -0.045em; /* Tighten at large sizes */
+  letter-spacing: -0.045em; /* the font is quite gappy at this size */
   margin-top: 0.3em; text-wrap: balance;
 }
 
-/* Cursor blinks 4 times then stays solid */
+/* block cursor after my name. blinks 4 times then stays solid so it isn't distracting */
 .cursor {
   display: inline-block; width: 0.54em; height: 0.78em; margin-left: 0.12em;
   background: var(--accent); vertical-align: baseline;
@@ -212,14 +232,14 @@ a:hover { background: var(--accent); color: var(--on-accent); text-decoration: n
   .hero-cols { grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 3.5rem; align-items: start; }
 }
 
-/* ---------- Sections ---------- */
+/* ---------- sections ---------- */
 
 main { display: block; }
 .sec { border-top: 1px solid var(--line); padding-block: clamp(2rem, 5vw, 3.25rem); }
 .sec-in { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.25rem; }
-.sec-body { min-width: 0; max-width: 46rem; } /* Readable line length */
+.sec-body { min-width: 0; max-width: 46rem; } /* keeps lines to a readable length */
 
-/* Desktop: sticky heading in left column */
+/* desktop: heading sits in a left column and sticks while you read the section */
 @media (min-width: 880px) {
   .sec-in { grid-template-columns: 12rem minmax(0, 1fr); gap: 2rem; }
   .sec-label { position: sticky; top: calc(env(safe-area-inset-top, 0px) + var(--nav-h) + 1.25rem); align-self: start; }
@@ -228,7 +248,7 @@ main { display: block; }
 .prose { display: flex; flex-direction: column; gap: 1rem; }
 .stack { display: flex; flex-direction: column; gap: 2.25rem; }
 
-/* Single job / course / project */
+/* one job / course / project */
 .entry h3 { font-size: var(--t-lg); line-height: 1.25; text-wrap: balance; }
 .entry .meta { color: var(--dim); font-size: var(--t-sm); margin-top: 0.2rem; }
 .entry .meta .org { color: var(--accent); }
@@ -238,19 +258,19 @@ main { display: block; }
 .points li { position: relative; padding-left: 2ch; }
 .points li::before { content: "-"; position: absolute; left: 0; color: var(--accent); }
 
-/* Sub-block, e.g. certifications */
+/* sub-block inside a section, e.g. certifications under education */
 .sub { margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px dashed var(--line); }
 .sub > h3 { margin-bottom: 0.75rem; }
 .sub .points { margin-top: 0; }
 
-/* Label widths (must be odd) */
+/* label widths for each rows list (odd numbers, see the note above) */
 .rows.skills { --label: 25ch; }
 .rows.contact { --label: 13ch; gap: 0.5rem; }
 .rows.grades { --label: 21ch; margin-top: 0.6rem; }
 .rows.bands { --label: 11ch; margin-top: 0.6rem; }
 .rows.contact dd .btn { margin-left: 1ch; }
 
-/* Stack skills rows on mobile */
+/* skills labels are too wide for a phone, so stack label over value there */
 @media (max-width: 640px) {
   .rows.skills > div { flex-direction: column; gap: 0; }
   .rows.skills dt { flex: 0 0 auto; width: auto; }
@@ -265,15 +285,16 @@ main { display: block; }
   .rows.contact { --label: 11ch; }
 }
 
-/* ---------- Footer ---------- */
+/* ---------- footer ---------- */
 
 .foot { border-top: 1px solid var(--line); color: var(--dim); font-size: var(--t-sm); }
 .foot-in { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.5rem 3ch; padding-block: 1.5rem 2rem; }
 .foot p { max-width: 60ch; }
 
-/* ---------- Status line ---------- */
+/* ---------- status line ---------- */
 
-/* 3270 style status bar, updated in main.js */
+/* fixed bar at the bottom, a nod to the status line on a real 3270 terminal.
+   shows which section you're in, updated from main.js */
 .status {
   position: fixed; left: 0; right: 0; bottom: 0; z-index: 20;
   background: var(--bg); border-top: 1px solid var(--accent);
@@ -287,9 +308,10 @@ main { display: block; }
 .status-pos { color: var(--ink); font-variant-numeric: tabular-nums; }
 @media (max-width: 560px) { .status-path { display: none; } }
 
-/* ---------- Print ---------- */
+/* ---------- print ---------- */
 
-/* Plain black and white CV. Tripled :root beats the dark theme rules */
+/* so ctrl+p gives a normal paper CV: black on white, no nav, no buttons.
+   the tripled :root is just to beat the specificity of the dark theme rules */
 @media print {
   :root:root:root {
     --bg: #fff; --surface: #f0f0f0; --ink: #000; --dim: #333; --line: #bbb; --leader: #999;

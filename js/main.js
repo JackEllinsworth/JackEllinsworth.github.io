@@ -1,8 +1,13 @@
+// Small bits of behaviour for the CV page. The page works fine without any
+// of this (it just follows the system theme and has no highlighted nav link).
+
 const root = document.documentElement;
 
-// ---------- Theme toggle ----------
+// ---------- theme toggle ----------
 
-// Follows the system theme until a choice is made. Saved choice is applied in <head>
+// Follows the system setting until someone clicks Dark or Light, then
+// remembers their choice. The saved value is applied by the inline script in
+// <head> so it's set before the page paints.
 const THEME_KEY = 'cv-theme';
 const themeGroup = document.getElementById('theme');
 const themeButtons = themeGroup ? [...themeGroup.querySelectorAll('button')] : [];
@@ -24,7 +29,7 @@ function updateThemeButtons() {
 themeButtons.forEach((btn) => {
   btn.addEventListener('click', () => {
     root.setAttribute('data-theme', btn.dataset.themeSet);
-    // localStorage can throw in private windows
+    // localStorage throws in some private windows, not worth breaking the toggle over
     try {
       localStorage.setItem(THEME_KEY, btn.dataset.themeSet);
     } catch (err) {}
@@ -32,16 +37,17 @@ themeButtons.forEach((btn) => {
   });
 });
 
-// Hidden by default so it's not a dead control without JS
+// the toggle is hidden in the html so it doesn't show up as a dead control with js off
 if (themeGroup) themeGroup.hidden = false;
 systemDark.addEventListener('change', updateThemeButtons);
-// Catches data-theme changes from anywhere
+// also catches the attribute being changed from outside this script
 new MutationObserver(updateThemeButtons).observe(root, { attributes: true, attributeFilter: ['data-theme'] });
 updateThemeButtons();
 
-// ---------- Current section ----------
+// ---------- current section ----------
 
-// Highlights the current nav link and updates the status line
+// Works out which section is being read, highlights its nav link and updates
+// the status line at the bottom.
 const navLinks = [...document.querySelectorAll('.nav-links a')];
 const sections = navLinks
   .map((link) => ({ link, el: document.getElementById(link.getAttribute('href').slice(1)), name: link.textContent }))
@@ -53,14 +59,15 @@ const twoDigits = (n) => String(n).padStart(2, '0');
 let activeIndex = null;
 
 function updateCurrentSection() {
-  // Section is current once its top passes ~1/3 down the screen
+  // a section counts as "current" once its top is about a third of the way down the screen
   const triggerLine = window.innerHeight * 0.35;
   let index = -1;
   sections.forEach((s, i) => {
     if (s.el.getBoundingClientRect().top <= triggerLine) index = i;
   });
 
-  // Contact is too short to hit the line, so use it at the bottom of the page
+  // Contact is short so it never reaches the trigger line. If we're at the
+  // very bottom of the page, just call it the last section.
   const atBottom = window.innerHeight + window.scrollY >= root.scrollHeight - 4;
   if (atBottom && window.scrollY > 0) index = sections.length - 1;
 
@@ -75,7 +82,7 @@ function updateCurrentSection() {
   if (statusSection) statusSection.textContent = index < 0 ? 'Top' : sections[index].name;
   if (statusPosition) statusPosition.textContent = `${twoDigits(index + 1)}/${twoDigits(sections.length)}`;
 
-  // Keep the active link in view on mobile
+  // on phones the nav scrolls sideways, so keep the active link in view
   if (index >= 0) {
     const link = sections[index].link;
     const nav = link.parentNode;
@@ -83,7 +90,7 @@ function updateCurrentSection() {
   }
 }
 
-// Throttle to once per frame
+// scroll fires constantly, so only do the work once per frame
 let frameQueued = false;
 function onScroll() {
   if (frameQueued) return;
@@ -97,9 +104,9 @@ window.addEventListener('scroll', onScroll, { passive: true });
 window.addEventListener('resize', onScroll);
 updateCurrentSection();
 
-// ---------- Copy buttons ----------
+// ---------- copy buttons ----------
 
-const liveRegion = document.getElementById('live'); // Screen reader announcements
+const liveRegion = document.getElementById('live'); // read out by screen readers
 
 function selectText(el) {
   const range = document.createRange();
@@ -121,7 +128,7 @@ document.querySelectorAll('[data-copy]').forEach((btn) => {
       if (liveRegion) liveRegion.textContent = `Copied ${text}`;
       setTimeout(() => { btn.textContent = 'Copy'; }, 1800);
     } catch (err) {
-      // Clipboard blocked, select the text instead
+      // clipboard can be blocked (http, old browsers), so select the text instead
       selectText(source);
       if (liveRegion) liveRegion.textContent = 'Selected. Press copy on your keyboard.';
     }

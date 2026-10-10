@@ -7,17 +7,16 @@
   <meta name="description" content="Jack Ellinsworth, public cloud engineer and degree apprentice at Barclays UK. Experience, education, skills, projects and contact details.">
   <meta name="color-scheme" content="light dark">
 
-  <!-- Link previews -->
+  <!-- what shows up when the link gets pasted into LinkedIn, Teams etc -->
   <meta property="og:type" content="profile">
   <meta property="og:title" content="Jack Ellinsworth, Cloud Engineer">
   <meta property="og:description" content="Public cloud engineer and degree apprentice at Barclays UK, working with AWS and Azure.">
-  <meta property="og:url" content="https://jackellinsworth.github.io/">
-  <link rel="canonical" href="https://jackellinsworth.github.io/">
 
-  <!-- Inline favicon -->
+  <!-- tiny inline favicon (a block cursor) so there isn't a 404 for favicon.ico -->
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%230a0f15'/%3E%3Crect x='5' y='3' width='6' height='10' fill='%2358d3cf'/%3E%3C/svg%3E">
 
-  <!-- Runs before the CSS to avoid a theme flash -->
+  <!-- has to run before the stylesheet, otherwise a saved dark/light choice
+       flashes the wrong theme for a split second on load -->
   <script>
     try {
       var savedTheme = localStorage.getItem('cv-theme');
@@ -44,7 +43,7 @@
       <a href="#projects">Projects</a>
       <a href="#contact">Contact</a>
     </nav>
-    <!-- Shown by main.js -->
+    <!-- starts hidden, main.js shows it. no point showing a toggle that can't work -->
     <div class="theme" id="theme" role="group" aria-label="Colour theme" hidden>
       <button type="button" id="theme-dark" data-theme-set="dark" aria-pressed="false">Dark</button>
       <button type="button" id="theme-light" data-theme-set="light" aria-pressed="false">Light</button>
@@ -68,7 +67,7 @@
             <a class="btn" href="https://github.com/JackEllinsworth" rel="noopener">GitHub</a>
           </p>
         </div>
-        <!-- Span hides the dot leaders -->
+        <!-- each label is wrapped in a span so the css can hide the dots behind it -->
         <dl class="rows">
           <div><dt><span>Role</span></dt><dd>Public Cloud Engineer</dd></div>
           <div><dt><span>Employer</span></dt><dd>Barclays UK</dd></div>
@@ -90,7 +89,7 @@
       <div class="sec-body prose">
         <p>I'm a cloud engineer in the Public Cloud Engineering team at Barclays, based at the Radbroke campus in Knutsford. I joined in August 2024 as a degree apprentice and I'm now halfway through a BSc in Digital and Technology Solutions at Manchester Metropolitan University, with a First in both years so far.</p>
         <p>At work I've led the architecture and rebuild of a multi-region application on AWS, helped build an internal web application from scratch and written the client package it depends on. Moving between infrastructure design, full-stack development and study has been a steep learning curve, and each has reinforced the others.</p>
-        <p>I started coding at 13 and have taken paid commissions since, building Discord bots, APIs and game systems. I hold three cloud certifications across AWS and Azure and I'm working towards AWS Solutions Architect Associate.</p>
+        <p>I started coding at 13 and have taken paid commissions since, building Discord bots, APIs and game systems, including a multiplayer game codebase of over 10,000 lines with its own REST backend. I hold three cloud certifications across AWS and Azure and I'm working towards AWS Solutions Architect Associate.</p>
       </div>
     </div>
   </section>
@@ -175,7 +174,7 @@
           <article class="entry">
             <h3>GCSEs</h3>
             <p class="meta"><span class="org">Cardinal Allen Catholic High School</span> · 2017 to 2022 · Nine GCSEs, all at grades 7 to 9</p>
-            <!-- Grouped by grade -->
+            <!-- grouped by grade, nine separate rows was too long -->
             <dl class="rows bands">
               <div><dt><span>Grade 9</span></dt><dd>Computer Science, Religious Education</dd></div>
               <div><dt><span>Grade 8</span></dt><dd>Mathematics, English Literature, Biology, Chemistry, Product Design</dd></div>
@@ -208,8 +207,10 @@
           <div><dt><span>AWS services</span></dt><dd>EC2, Route 53, CloudFormation, CodeDeploy</dd></div>
           <div><dt><span>Resilience</span></dt><dd>Multi-region architecture, automatic and manual failover, zero-downtime deployments, automatic rollbacks, monitoring, release strategy</dd></div>
           <div><dt><span>Networking</span></dt><dd>Network design, DNS, geolocation failover, SSL certificates and domains</dd></div>
-          <div><dt><span>Languages</span></dt><dd>Python, Java, JavaScript (Node.js), SQL, Lua, Visual Basic .NET</dd></div>
-          <div><dt><span>Development</span></dt><dd>APIs with Express, Alpine.js, HTMX, client library design, game engine scripting, software architecture and design</dd></div>
+          <div><dt><span>Languages</span></dt><dd>Python, Java, JavaScript (Node.js), SQL, Lua and Luau, Visual Basic .NET</dd></div>
+          <div><dt><span>Architecture</span></dt><dd>Client-server architecture, event-driven and decoupled services, in-memory caching, client library design, software architecture and design</dd></div>
+          <div><dt><span>Development</span></dt><dd>REST APIs with Express, webhook integrations, Alpine.js, HTMX, game engine scripting</dd></div>
+          <div><dt><span>Access control</span></dt><dd>Role-based permissions, server-side validation of client requests, secrets kept out of source control</dd></div>
           <div><dt><span>Databases</span></dt><dd>SQL database management, advanced queries, migration strategies, MySQL, MongoDB</dd></div>
           <div><dt><span>Pipelines</span></dt><dd>GitLab CI/CD pipelines</dd></div>
           <div><dt><span>Systems</span></dt><dd>Linux and the UNIX command line, VPS servers, operating systems</dd></div>
@@ -220,7 +221,7 @@
     </div>
   </section>
 
-  <!-- ===== Projects ===== -->
+  <!-- ===== Projects (own time, the work ones are under Experience) ===== -->
   <section class="sec" id="projects" aria-labelledby="h-projects">
     <div class="wrap sec-in">
       <div class="sec-label"><h2 class="rev" id="h-projects">Projects</h2></div>
@@ -229,21 +230,24 @@
         <p>I've been building things in my own time since I was 13. My work projects are under Experience.</p>
 
         <article class="entry">
+          <h3>ZeuraCore, a multiplayer airline simulation</h3>
+          <p class="meta"><span class="org">Own project</span> · Aug 2021 to Jul 2024 · Luau, Node.js, Express, MongoDB</p>
+          <p class="note">The server and client code behind a multiplayer game where players check in, clear security, board and fly, while staff run the airport with in-game tools. Around 100 files and over 10,000 lines of my own code.</p>
+          <ul class="points">
+            <li>Client-server architecture with the server in charge: every staff-only request is checked against a central permission service, so the client is never trusted.</li>
+            <li>Event-driven services. The flight service publishes changes and the screens, gates, check-in desks and in-flight systems subscribe, which keeps them decoupled.</li>
+            <li>Player, moderation and flight data stored in MongoDB behind a REST API that I wrote with Node.js and Express, called over HTTPS with a separate API key per endpoint.</li>
+            <li>Hosted that API on my own VPS, set up from the UNIX command line with secured server ports, SSL certificates and a domain name.</li>
+            <li>An automatic queue system for the check-in desks, purchase receipt handling that alerts staff when a payment fails, and batched, throttled autosaves.</li>
+            <li>Built and sold airport systems like these to other developers on commission.</li>
+          </ul>
+          <p class="note">Code: <a href="https://github.com/JackEllinsworth/ZeuraCode-public-showcase" rel="noopener">ZeuraCode-public-showcase on GitHub</a></p>
+        </article>
+
+        <article class="entry">
           <h3>Commissioned Discord bot with music playback</h3>
           <p class="meta"><span class="org">Paid commission</span> · Node.js</p>
           <p class="note">Took a client's brief through to a finished bot and delivered it as paid work. Written in Node.js, with music playback alongside its other features.</p>
-        </article>
-
-        <article class="entry">
-          <h3>Commissioned game systems</h3>
-          <p class="meta"><span class="org">Paid commissions</span> · Game engine scripting</p>
-          <p class="note">Built and sold in-game technology to other developers, working in a game engine. Most of it was airport infrastructure, including an automatic user queue system built around recursion.</p>
-        </article>
-
-        <article class="entry">
-          <h3>Express APIs for user data</h3>
-          <p class="meta"><span class="org">Personal and group projects</span> · Node.js, Express, MongoDB, MySQL</p>
-          <p class="note">APIs built with Express to manage user data on top of a database, for my own projects and for group work. Hosted on a VPS that I set up from the UNIX command line, with secured server ports, SSL certificates and a domain name.</p>
         </article>
 
         <article class="entry">
@@ -264,7 +268,7 @@
         <p>The quickest way to reach me is LinkedIn or email.</p>
         <dl class="rows contact">
           <div><dt><span>LinkedIn</span></dt><dd><a href="https://www.linkedin.com/in/jack-ellinsworth-8146242b0" id="c-linkedin" rel="noopener">linkedin.com/in/jack-ellinsworth-8146242b0</a></dd></div>
-          <!-- data-copy = id of the text to copy -->
+          <!-- data-copy is the id of the element whose text the button copies (see main.js) -->
           <div><dt><span>Email</span></dt><dd><a href="mailto:jackellinsworth@gmail.com" id="c-email">jackellinsworth@gmail.com</a><button type="button" class="btn small" id="copy-email" data-copy="c-email">Copy</button></dd></div>
           <div><dt><span>GitHub</span></dt><dd><a href="https://github.com/JackEllinsworth" id="c-github" rel="noopener">github.com/JackEllinsworth</a></dd></div>
           <div><dt><span>Location</span></dt><dd>Thornton-Cleveleys, Lancashire</dd></div>
@@ -283,7 +287,8 @@
   </div>
 </footer>
 
-<!-- Decorative status line -->
+<!-- status line along the bottom. purely decorative (the nav already says where
+     you are) so it's hidden from screen readers -->
 <div class="status" aria-hidden="true">
   <div class="wrap status-in">
     <span class="status-id">4B</span>
@@ -293,7 +298,7 @@
   </div>
 </div>
 
-<!-- Structured data -->
+<!-- structured data so search engines know this page is about a person -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
